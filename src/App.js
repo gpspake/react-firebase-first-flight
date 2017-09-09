@@ -13,12 +13,24 @@ class App extends Component {
   componentDidMount() {
     database.ref().on('value', (snapshot) => {
       this.setState({
-        data: snapshot.val()
+        data: null,
+        newData: ''
       }
     )
     });
   }
 
+  handleChange(event) {
+    const newData = event.target.value;
+    this.setState({
+      newData
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+  }
   render() {
     return (
       <div className="App">
@@ -28,6 +40,10 @@ class App extends Component {
         <pre className="App--data">
           { JSON.stringify(this.state.data, null, 2) }
         </pre>
+        <form classID="App--form" onSubmit={this.handleSubmit}>
+          <input type="text" value={this.state.newData} onChange={this.handleChange}/>
+          <input type="submit"/>
+        </form>
       </div>
     );
   }
