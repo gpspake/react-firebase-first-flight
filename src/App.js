@@ -6,7 +6,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null
+      data: null,
+      newData: ''
     };
 
     this.dataRef = null;
@@ -19,7 +20,6 @@ class App extends Component {
     this.dataRef.on('value', (snapshot) => {
       this.setState({
           data: snapshot.val(),
-          newData: ''
         }
       )
     });
