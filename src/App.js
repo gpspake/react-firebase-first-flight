@@ -9,12 +9,14 @@ class App extends Component {
       data: null
     };
 
+    this.dataRef = null;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    database.ref().on('value', (snapshot) => {
+    this.dataRef = database.ref('one/two');
+    this.dataRef.on('value', (snapshot) => {
       this.setState({
           data: snapshot.val(),
           newData: ''
@@ -32,9 +34,7 @@ class App extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    database.ref()
-            .child('AMAZINGNEWDATA')
-            .set(this.state.newData);
+    this.dataRef.push(this.state.newData);
   }
 
   render() {
