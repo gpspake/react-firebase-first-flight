@@ -16,7 +16,7 @@ class App extends Component {
   componentDidMount() {
     database.ref().on('value', (snapshot) => {
       this.setState({
-          data: null,
+          data: snapshot.val(),
           newData: ''
         }
       )
@@ -45,7 +45,7 @@ class App extends Component {
           {JSON.stringify(this.state.data, null, 2)}
         </pre>
         <form classID="App--form" onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.newData} onChange={this.handleChange}/>
+          <input type="text" value={this.state.newData} onChange={this.handleChange} />
           <input type="submit"/>
         </form>
       </div>
