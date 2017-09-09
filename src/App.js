@@ -10,13 +10,12 @@ class App extends Component {
       newData: ''
     };
 
-    this.dataRef = null;
+    this.dataRef = database.ref('/');
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    this.dataRef = database.ref('one/two');
     this.dataRef.on('value', (snapshot) => {
       this.setState({
           data: snapshot.val(),
