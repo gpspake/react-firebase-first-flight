@@ -26,9 +26,8 @@ class App extends Component {
   }
 
   handleChange(event) {
-    const newData = event.target.value;
     this.setState({
-      newData
+      newData: event.target.value
     });
   }
 
